@@ -1,0 +1,1 @@
+// coins/time/mapNumb/heart/score/herocode/herox/heroy/partNumb/save/Index
