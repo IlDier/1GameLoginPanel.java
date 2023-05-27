@@ -55,7 +55,7 @@ public class FinishChecker {
            }
 
 
-            sectionPanel.getPlayer().setCoins(sectionPanel.getPlayer().getCoins()sectionPanel.getMario().getCoins());
+            sectionPanel.getPlayer().setCoins(sectionPanel.getPlayer().getCoins()+sectionPanel.getMario().getCoins());
             if(win) {
 
                 sectionPanel.getSm().finalScore((int) (sectionPanel.getMainTime()-sectionPanel.getTimer()/1000000000));
