@@ -29,12 +29,12 @@ public class CharacterKeyListener implements KeyListener {
         }  else if(keyCode == KeyEvent.VK_S){
        down=true;
         }else if (keyCode == KeyEvent.VK_ESCAPE) {
-            int res = JOptionPane.showConfirmDialog(sectionPanel,"Are you sure to Exit ?");
-            if(res == 0 ){
-                int res1 =JOptionPane.showConfirmDialog(sectionPanel,"Do you want to save this game ?!");
-                Game game = new Game(sectionPanel,sectionPanel.getPlayer());
+            int res = JOptionPane.showConfirmDialog(sectionPanel, "Are you sure to Exit ?");
+            if (res == 0) {
+                int res1 = JOptionPane.showConfirmDialog(sectionPanel, "Do you want to save this game ?!");
+                Game game = new Game(sectionPanel, sectionPanel.getPlayer());
                 game.setPerCode();
-                if(res1 == 0){
+                if (res1 == 0) {
 
 
                     game.setSCD();
@@ -43,7 +43,16 @@ public class CharacterKeyListener implements KeyListener {
                 sectionPanel.STOP();
                 new GameLoginFrame(sectionPanel.getPlayer());
             }
-        }
+        } else if (keyCode == KeyEvent.VK_I && sectionPanel.getMario().isCheckPoint()) {
+                int res = JOptionPane.showConfirmDialog(sectionPanel, "Do you want to save your game here ?!");
+                if (res == 0) {
+                    Game game  = new Game(sectionPanel,sectionPanel.getPlayer());
+                    game.setPerCode();
+                    sectionPanel.getPlayer().setIndex(IndexChecker.getIndex());
+                }
+
+            }
+
 
     }
 

@@ -2,15 +2,16 @@ package Game.Logic.Heros;
 
 import DataManager.PlayersData.Player;
 import Game.Game.CharacterKeyListener;
-import Game.Game.GameManger.Game;
 import Game.Game.SectionFrame;
 import Game.Game.SectionPanel;
 import Game.Logic.Character;
+import Game.Logic.CheckPoint.GrayFlag;
 import Game.Logic.Coin.Coin;
 import Game.Logic.Enemy.Planet;
-import Game.Logic.Flag;
+import Game.Logic.CheckPoint.Flag;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 
@@ -18,9 +19,12 @@ public class Mario extends Character {
     private int Heart = 3;
     private final int grovicty = 1;
     protected int code = 0;
+
     protected int coins = 0;
     private final int xCo = x;
     private final int yCo = y;
+    private boolean checkPoint = false;
+    protected boolean blockDestroyer = false;
     private Player player;
 
     public Mario(int x, int y, int Width, int Height, SectionPanel sectionPanel, CharacterKeyListener characterKeyListener) {
@@ -33,11 +37,12 @@ public class Mario extends Character {
     @Override
     public void Update(SectionPanel sectionPanel) {
 
-        sectionPanel.collisionChecker.checkTile(this);
-        for (Character character : sectionPanel.map.characters) {
+        sectionPanel.getCollisionChecker().checkTile(this);
+        for (Character character : sectionPanel.getMap().characters) {
             touchWithEnemy(character);
             touchCoin(character);
             touchFlag(character);
+            touchCheckPoint(character);
         }
         upDynamic();
         deadJumping(sectionPanel);
@@ -102,6 +107,12 @@ public class Mario extends Character {
             x = xCo;
             y = yCo - 16;
         }
+    }
+    protected void touchCheckPoint(Character character){
+        if(character instanceof GrayFlag && character.isTouch(this,0)){
+            checkPoint = true;
+        }
+        else checkPoint = false;
     }
 
     protected void touchFlag(Character character) {
@@ -183,5 +194,21 @@ public class Mario extends Character {
 
     public void setPlayer(Player player) {
         this.player = player;
+    }
+
+    public boolean isCheckPoint() {
+        return checkPoint;
+    }
+
+    public void setCheckPoint(boolean checkPoint) {
+        this.checkPoint = checkPoint;
+    }
+
+    public boolean isBlockDestroyer() {
+        return blockDestroyer;
+    }
+
+    public void setBlockDestroyer(boolean blockDestroyer) {
+        this.blockDestroyer = blockDestroyer;
     }
 }

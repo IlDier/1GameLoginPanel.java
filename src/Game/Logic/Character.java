@@ -44,6 +44,10 @@ public abstract class Character {
         if(((center1X-center2X)*(center1X-center2X)+(center2Y-center1Y)*(center2Y-center1Y))<=((radius2+radius1)*(radius2+radius1)+appro)) return true;
         else return false;
     }
+    public void remove(){
+        x = -1000;
+        y = -1000;
+    }
 
 
     public int getX() {

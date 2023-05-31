@@ -5,6 +5,7 @@ import Game.Game.GameManger.Game;
 import Game.Logic.Character;
 import Game.Logic.CollisionChecker;
 import Game.Logic.Heros.Mario;
+import Game.Logic.Interfaces.ProgressRate;
 import Game.Logic.Maps.Map;
 
 import Game.Logic.Score.ScoreManager;
@@ -13,7 +14,7 @@ import Game.Logic.Tile.TileManager;
 import javax.swing.*;
 import java.awt.*;
 
-public class SectionPanel extends JPanel implements Runnable{
+public class SectionPanel extends JPanel implements Runnable , ProgressRate {
     private static final int originalTileSize = 16;
     private static final int scaleSize=2;
     public static final int tileSize= originalTileSize*scaleSize;
@@ -28,9 +29,6 @@ public class SectionPanel extends JPanel implements Runnable{
     private Thread gameThread;
     public CharacterKeyListener characterKeyListener = new CharacterKeyListener(this);
     private Mario mario ;
-    public CollisionChecker collisionChecker = new CollisionChecker(this);
-    public Map map;
-    private SectionFrame sectionFrame;
     private Player player;
     private int mainTime = 120;
     public static int floor = 635;
@@ -38,6 +36,9 @@ public class SectionPanel extends JPanel implements Runnable{
     private FinishChecker fc = new FinishChecker(this);
     private ScoreManager sm = new ScoreManager(0,0,0,0);
     private Game game;
+    private SectionFrame sectionFrame;
+    private Map map;
+    private CollisionChecker collisionChecker = new CollisionChecker(this);
 
 
     public SectionPanel(SectionFrame sectionFrame, int mapNumb, long timer, int coins, int hearts, Player player, int partNumb,Game game){
@@ -85,7 +86,7 @@ public class SectionPanel extends JPanel implements Runnable{
 
         while (gameThread != null) {
 
-            currentTime=System.nanoTime();
+            currentTime = System.nanoTime();
             delta+=(currentTime-lastTime)/drawInterval;
             timer+=currentTime-lastTime;
             lastTime=currentTime;
@@ -109,7 +110,7 @@ public class SectionPanel extends JPanel implements Runnable{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-    Graphics2D g2=(Graphics2D) g;
+    Graphics2D g2 = (Graphics2D) g;
 
     tileManager.draw(g2);
 
@@ -140,7 +141,6 @@ public class SectionPanel extends JPanel implements Runnable{
     public void stopGameThread(){
         gameThread = null;
     }
-
     public int getTileSize() {
         return tileSize;
     }
@@ -297,4 +297,26 @@ public class SectionPanel extends JPanel implements Runnable{
         sectionFrame.dispose();
         stopGameThread();
     }
+
+    @Override
+    public int coin() {
+        return mario.getCoins();
+    }
+
+    @Override
+    public int distanceFromStart() {
+        return (mapNumb % 4) * sectionFrame.getX() + mario.getX();
+    }
+
+    @Override
+    public int distanceUntilEnd() {
+        return 4 * sectionFrame.getX() - distanceFromStart();
+    }
+
+    @Override
+    public int ProressRate() {
+        if(distanceFromStart()/distanceUntilEnd() > 0) return distanceFromStart()/distanceUntilEnd();
+        else return distanceFromStart();
+    }
+
 }

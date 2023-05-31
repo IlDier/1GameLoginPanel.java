@@ -2,9 +2,10 @@ package Game.Logic.Maps;
 
 import Game.Game.SectionPanel;
 import Game.Logic.Character;
+import Game.Logic.CheckPoint.GrayFlag;
 import Game.Logic.Coin.Coin;
 import Game.Logic.Enemy.Planet;
-import Game.Logic.Flag;
+import Game.Logic.CheckPoint.Flag;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -44,6 +45,7 @@ public class Map {
         characters.add(new Coin(34*32,16*32,32,32,sectionPanel,null));
         characters.add(new Coin(33*32,16*32,32,32,sectionPanel,null));
         characters.add(new Flag(1200,205,200,478,sectionPanel,null));
+        characters.add(new GrayFlag(800,200,72,88,sectionPanel,null));
         sectionPanel.tileManager.loadMap(P1_1);
     }
     private void P1_2(SectionPanel sectionPanel){
