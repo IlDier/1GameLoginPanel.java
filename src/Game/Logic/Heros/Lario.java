@@ -3,7 +3,7 @@ package Game.Logic.Heros;
 import Game.Game.CharacterKeyListener;
 import Game.Game.SectionPanel;
 import Game.Logic.Character;
-import Game.Logic.Coin.Coin;
+import Game.Logic.Items.Coin;
 
 import javax.imageio.ImageIO;
 import java.io.File;
@@ -24,13 +24,11 @@ public class Lario extends Mario{
     }
 
     @Override
-    protected Character touchCoin(Character character) {
-        Character character1 = null;
+    protected void touchCoin(Character character) {
         if (character instanceof Coin && this.isTouch(character,10000)) {
             coins++;
             character.setVisible(false);
-            character1 = character;
         }
-        return character1;
+
     }
 }

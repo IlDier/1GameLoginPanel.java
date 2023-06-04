@@ -9,7 +9,6 @@ import java.io.File;
 public class Jario extends Mario{
     public Jario(int x, int y, int Width, int Height, SectionPanel sectionPanel, CharacterKeyListener characterKeyListener) {
         super(x, y, Width, Height, sectionPanel, characterKeyListener);
-
         speedY = 30;
         code = 4;
     }

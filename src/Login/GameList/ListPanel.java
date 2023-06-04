@@ -74,7 +74,7 @@ public class ListPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 listFrame.dispose();
                 player.updateHero();
-                new SectionFrame(0,0,0,3,player,1,null);
+                new SectionFrame(0,0,0,3,player,1,null,0);
             }
         });
     }
@@ -91,7 +91,7 @@ public class ListPanel extends JPanel {
                 Game game = new Game(player);
                 game.setPrevious(true);
                 if(!game.issaveD()) game.NEWGAME();
-                new SectionFrame(game.getMapNumb(),game.getTime(),game.getCoins(),game.getHeart(),player,game.getPartNumb(),game);
+                new SectionFrame(game.getMapNumb(),game.getTime(),game.getCoins(),game.getHeart(),player,game.getPartNumb(),game,game.getScore());
             }
         });
     }

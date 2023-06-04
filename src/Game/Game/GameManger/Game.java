@@ -42,7 +42,6 @@ public class Game {
         time = sectionPanel.getTimer();
         mapNumb = sectionPanel.getMapNumb();
         heart = player.getMainHero().getHeart();
-        sectionPanel.getSm().update(sectionPanel);
         score = sectionPanel.getSm().score;
         heroCode = player.getHeroCode();
         heroX = player.getMainHero().getX();
@@ -312,5 +311,71 @@ public class Game {
         game.setSecond_SCD();
     }
 
+    public void setSectionPanel(SectionPanel sectionPanel) {
+        this.sectionPanel = sectionPanel;
+    }
 
+    public void setCoins(int coins) {
+        this.coins = coins;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
+    }
+
+    public void setMapNumb(int mapNumb) {
+        this.mapNumb = mapNumb;
+    }
+
+    public void setHeart(int heart) {
+        this.heart = heart;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public void setHeroCode(int heroCode) {
+        this.heroCode = heroCode;
+    }
+
+    public void setHeroX(int heroX) {
+        this.heroX = heroX;
+    }
+
+    public void setHeroY(int heroY) {
+        this.heroY = heroY;
+    }
+
+    public void setPartNumb(int partNumb) {
+        this.partNumb = partNumb;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+    public void setSave(boolean save) {
+        this.save = save;
+    }
+
+    public void setPerCode(String perCode) {
+        this.perCode = perCode;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public void setSecretCode1(String secretCode1) {
+        this.secretCode1 = secretCode1;
+    }
+
+    public void setSecretCode2(String secretCode2) {
+        this.secretCode2 = secretCode2;
+    }
+
+    public void setSecretCode3(String secretCode3) {
+        this.secretCode3 = secretCode3;
+    }
 }

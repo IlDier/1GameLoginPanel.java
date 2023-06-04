@@ -2,6 +2,8 @@ package Game.Logic;
 
 import Game.Game.CharacterKeyListener;
 import Game.Game.SectionPanel;
+import Game.Logic.Score.ScoreManager;
+import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -9,6 +11,8 @@ import java.awt.image.BufferedImage;
 public abstract class Character {
     protected int x= 50;
     protected int y=50;
+    protected int nowMapNumb;
+    protected int partNumb;
     protected int speedX=15;
     protected int speedY=10;
     protected int Width ;
@@ -33,6 +37,10 @@ public abstract class Character {
     }
     protected void getImage(){}
     public void Update(SectionPanel sectionPanel){}
+
+    public void Update(@NotNull SectionPanel sectionPanel, ScoreManager scoreManager) {
+    }
+
     public  void draw(Graphics2D g2){}
     public boolean isTouch(Character character,int appro){
         double radius1 = Math.sqrt(Width*Width+Height*Height)/2;
@@ -149,4 +157,19 @@ public abstract class Character {
     public void setDirection(String direction) {
         this.direction = direction;
     }
+
+    public int getNowMapNumb() {
+        return nowMapNumb;
+    }
+
+    public void setNowMapNumb(int nowMapNumb) {
+        this.nowMapNumb = nowMapNumb;
+    }
+
+
+
+    public void setPartNumb(int partNumb) {
+        this.partNumb = partNumb;
+    }
+    public int getPartNumb(){ return partNumb; }
 }

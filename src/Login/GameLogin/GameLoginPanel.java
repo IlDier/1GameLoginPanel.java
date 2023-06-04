@@ -93,7 +93,7 @@ public class GameLoginPanel extends JPanel {
                  game.getPer_Code();
                  gameLoginFrame.dispose();
                 if(!game.perSave()) game.NEWGAME();
-                 new SectionFrame(game.getMapNumb(),game.getTime(),game.getCoins(),game.getHeart(),player,game.getPartNumb(),game);
+                 new SectionFrame(game.getMapNumb(),game.getTime(),game.getCoins(),game.getHeart(),player,game.getPartNumb(),game,game.getScore());
             }
         });
         PREVIOUS_GAME.setVisible(true);

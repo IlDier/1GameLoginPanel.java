@@ -3,6 +3,8 @@ package Game.Logic.Enemy;
 import Game.Game.CharacterKeyListener;
 import Game.Game.SectionPanel;
 import Game.Logic.Character;
+import Game.Logic.Score.ScoreManager;
+import org.jetbrains.annotations.NotNull;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -27,6 +29,7 @@ public class Planet extends Enemy{
             System.out.println("NO");
         }
     }
+
 
     @Override
     public void draw(Graphics2D g2) {

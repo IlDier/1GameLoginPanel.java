@@ -34,20 +34,21 @@ public class SectionPanel extends JPanel implements Runnable , ProgressRate {
     public static int floor = 635;
     private int partNumb = 1;
     private FinishChecker fc = new FinishChecker(this);
-    private ScoreManager sm = new ScoreManager(0,0,0,0);
+    private ScoreManager sm ;
     private Game game;
     private SectionFrame sectionFrame;
     private Map map;
     private CollisionChecker collisionChecker = new CollisionChecker(this);
 
 
-    public SectionPanel(SectionFrame sectionFrame, int mapNumb, long timer, int coins, int hearts, Player player, int partNumb,Game game){
+    public SectionPanel(SectionFrame sectionFrame, int mapNumb, long timer, int coins, int hearts, Player player, int partNumb,Game game,int score){
+        sm = new ScoreManager(score,0,this);
         this.game = game;
         this.player = player;
         this.partNumb = partNumb;
         mario = player.mainHero;
         mario.setCharacterKeyListener(characterKeyListener);
-        if(mapNumb==0&& game!=null) {
+        if(mapNumb==0 && game!=null) {
             mario.setX(game.getHeroX());
             mario.setY(game.getHeroY());
         }
@@ -66,7 +67,10 @@ public class SectionPanel extends JPanel implements Runnable , ProgressRate {
         addKeyListener(characterKeyListener);
         setFocusable(true);
 
+        // Starting for calculating Score
+
         map = new Map(mapNumb, this,partNumb);
+        characterKeyListener.init_characters();
 
 
     }
@@ -102,8 +106,9 @@ public class SectionPanel extends JPanel implements Runnable , ProgressRate {
         }
     }
     public void update(){
-    mario.Update(this);
-    sm.update(this);
+    mario.setNowMapNumb(mapNumb);
+    mario.setPartNumb(partNumb-1);
+    mario.Update(this,sm);
     fc.updateFC();
     }
 

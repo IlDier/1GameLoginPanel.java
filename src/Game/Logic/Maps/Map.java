@@ -3,14 +3,18 @@ package Game.Logic.Maps;
 import Game.Game.SectionPanel;
 import Game.Logic.Character;
 import Game.Logic.CheckPoint.GrayFlag;
-import Game.Logic.Coin.Coin;
 import Game.Logic.Enemy.Planet;
 import Game.Logic.CheckPoint.Flag;
+import Game.Logic.Items.Coin;
+import Game.Logic.Items.MagicFlower;
+import Game.Logic.Items.MagicalMushroom;
+import Game.Logic.Items.MagicalStar;
+import Game.Logic.Weapon.Weapon;
 
 import java.io.File;
 import java.util.ArrayList;
 
-public class Map {
+public  class Map {
     public ArrayList<Character> characters = new ArrayList<>();
     private File P1_1;
     private File P1_2;
@@ -38,9 +42,13 @@ public class Map {
     }
     private void P1_1(SectionPanel sectionPanel){
         P1_1 = new File("D:/JavaProjects/ApProjectSpring2023/src/Game/Logic/Maps/1_PART/1.txt");
+        characters.add(new Weapon(140,500,32,32,sectionPanel,null));
         characters.add(new Coin(150,640,32,32,sectionPanel,null));
+        characters.add(new MagicFlower(200,300,56,49,sectionPanel,null));
         characters.add(new Coin(200,640,32,32,sectionPanel,null));
         characters.add(new Coin(250,640,32,32,sectionPanel,null));
+        characters.add(new MagicalMushroom(300,500,32,32,sectionPanel,null));
+        characters.add(new MagicalStar(250,500,62,43,sectionPanel,null));
         characters.add(new Coin(300,640,32,32,sectionPanel,null));
         characters.add(new Coin(34*32,16*32,32,32,sectionPanel,null));
         characters.add(new Coin(33*32,16*32,32,32,sectionPanel,null));

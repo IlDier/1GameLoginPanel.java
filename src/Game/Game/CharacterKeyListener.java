@@ -1,18 +1,27 @@
 package Game.Game;
 
 import DataManager.IndexChecker.IndexChecker;
+import DataManager.PlayersData.Player;
 import Game.Game.GameManger.Game;
+import Game.Logic.Character;
+import Game.Logic.CheckPoint.GrayFlag;
+import Game.Logic.Heros.Mario;
 import Login.GameLogin.GameLoginFrame;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 public class CharacterKeyListener implements KeyListener {
     public boolean up , down , right , left ;
     private SectionPanel sectionPanel;
+    private ArrayList<Character> characters;
     public CharacterKeyListener(SectionPanel sectionPanel){
         this.sectionPanel = sectionPanel;
+    }
+    public void init_characters(){
+        characters = sectionPanel.getMap().characters;
     }
     @Override
     public void keyTyped(KeyEvent e) {}
@@ -46,12 +55,26 @@ public class CharacterKeyListener implements KeyListener {
         } else if (keyCode == KeyEvent.VK_I && sectionPanel.getMario().isCheckPoint()) {
                 int res = JOptionPane.showConfirmDialog(sectionPanel, "Do you want to save your game here ?!");
                 if (res == 0) {
+                    Mario mario = sectionPanel.getPlayer().getMainHero();
                     Game game  = new Game(sectionPanel,sectionPanel.getPlayer());
+                    for(Character character : characters){
+                        if(character instanceof GrayFlag && mario.getNowMapNumb() == character.getNowMapNumb()){
+                           if(mario.getPartNumb() == character.getPartNumb()) {
+                               game.setHeroX(character.getX());
+                               break;
+                           }
+                        }
+                    }
                     game.setPerCode();
+                    game.setSCD();
                     sectionPanel.getPlayer().setIndex(IndexChecker.getIndex());
                 }
 
             }
+        else if(keyCode == KeyEvent.VK_O){
+            sectionPanel.getMario().activateSword();
+
+        }
 
 
     }

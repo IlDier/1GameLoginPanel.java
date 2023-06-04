@@ -63,7 +63,7 @@ public class FinishChecker {
                 JOptionPane.showMessageDialog(sectionPanel.getSectionFrame(),"You Won! with score: " +score);
             }
             else {
-                sectionPanel.getSm().scoreResult();
+//                sectionPanel.getSm().scoreResult();
                 score = sectionPanel.getSm().score;
                 JOptionPane.showMessageDialog(sectionPanel.getSectionFrame(),"You Lost! with score: " +score);
             }
